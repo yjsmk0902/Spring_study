@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/exception" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/itemservice-db" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/jdbc" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/login" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/springtx" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/typeconverter" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/upload" vcs="Git" />
   </component>
 </project>
