@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/exception/src/main/java/hello/exception/exception/advice/ExControllerAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="스프링 트랜잭션 전파">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exception" beforeDir="false" afterPath="$PROJECT_DIR$/exception" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/src/main/java/hello/exception/api/ApiExceptionControllerV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/exception/src/main/java/hello/exception/api/ApiExceptionControllerV2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jdbc" beforeDir="false" afterPath="$PROJECT_DIR$/jdbc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springtx" beforeDir="false" afterPath="$PROJECT_DIR$/springtx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,19 +15,26 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/exception" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2F0zPBmCUMk0YlffbuRq0tDakza" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/luke/Desktop/Spring/Spring study&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/luke/Desktop/Spring/Spring study",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
@@ -41,7 +47,20 @@
       <workItem from="1664407942217" duration="12000" />
       <workItem from="1665975411663" duration="214000" />
       <workItem from="1665985019429" duration="45000" />
+      <workItem from="1666053395011" duration="370000" />
+      <workItem from="1666054092806" duration="114000" />
+      <workItem from="1666054212845" duration="177000" />
+      <workItem from="1666054398473" duration="69000" />
+      <workItem from="1666054473058" duration="431000" />
     </task>
+    <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
+      <created>1666053484507</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666053484507</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -57,5 +76,13 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="스프링 트랜잭션 전파" />
+    <option name="LAST_COMMIT_MESSAGE" value="스프링 트랜잭션 전파" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
