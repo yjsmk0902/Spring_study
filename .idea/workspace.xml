@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="영속성 컨텍스트" />
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="엔티티 매핑" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,6 +51,7 @@
       <workItem from="1666158588809" duration="650000" />
       <workItem from="1666308476072" duration="12000" />
       <workItem from="1666310919537" duration="108000" />
+      <workItem from="1666321405904" duration="128000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -80,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666310947160</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="엔티티 매핑">
+      <created>1666321427720</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1666321427720</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,7 +110,8 @@
     <MESSAGE value="스프링 트랜잭션 전파 활용" />
     <MESSAGE value="JPA 시작하기" />
     <MESSAGE value="영속성 컨텍스트" />
-    <option name="LAST_COMMIT_MESSAGE" value="영속성 컨텍스트" />
+    <MESSAGE value="엔티티 매핑" />
+    <option name="LAST_COMMIT_MESSAGE" value="엔티티 매핑" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
