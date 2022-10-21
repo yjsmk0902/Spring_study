@@ -8,6 +8,7 @@ public class Member {
 
     @Id
     @GeneratedValue
+    @Column(name="MEMBER_ID")
     private Long id;
 
     //기본 키 매핑 (Primary Key Mapping)
@@ -17,7 +18,7 @@ public class Member {
     //SEQUENCE  => DB 시퀀스 오브젝트 사용, ORACLE ->        @SequenceGenerator 필요
     //TABLE     => 키 생성용 테이블 사용, 모든 DB에서 사용 ->      @TableGenerator 필요
     //AUTO      => 방언에 따라 자동 지정, 기본값
-    @Column(name="name")
+    @Column(name="USERNAME")
     private String username;
 
     //[@Column Option]
@@ -31,7 +32,12 @@ public class Member {
     //precision, scale(DDL) =>  BigDecimal 타입에서 사용한다. (BigInteger도 사용 가능)
     //                          precision은 소수점을 포함한 전체 자릿수를, scale은 소수의 자릿수이다. (double, float은 적용 불가능)
 
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
 
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
     private Integer age;
 
     @Enumerated(EnumType.STRING)
@@ -100,6 +106,26 @@ public class Member {
         this.username = username;
     }
 
+//    public Long getTeamId() {
+//        return teamId;
+//    }
+//
+//    public void setTeamId(Long teamId) {
+//        this.teamId = teamId;
+//    }
+    public Team getTeam() {
+        return team;
+    }
+
+    public void changeTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);    //연관관계 편의 메소드를 생성
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -110,10 +136,6 @@ public class Member {
 
     public RoleType getRoleType() {
         return roleType;
-    }
-
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
     }
 
     public Date getCreatedDate() {
