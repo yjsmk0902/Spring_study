@@ -56,10 +56,26 @@ public class JpaMain {
 //            member.setName("abcd");
 //            //값의 변경을 감지시에 update 쿼리가 날아감
 //            //Entity와 Snapshot을 비교하여 DB에 반영
-            
+
 //            //엔티티 삭제
 //            Member member = em.find(Member.class, 1L);
 //            em.remove(member);
+
+            //영속성 컨텍스트를 플러시 하는 방법
+            //em.flush() -> 직접 호출
+            //tx.commit() -> 플러시 자동 호출
+            //JPQL 쿼리 실행 -> 플러시 자동 호출
+            //플러시 -> 영속성 컨텍스트를 비우지 않음 + 변경내용을 DB에 동기화
+
+            //준영속 상태로 만드는 방법
+            //em.detach(entity) -> 특정 엔티티만 준영속 상태로 전환
+            //em.clear() -> 영속성 컨텍스트를 완전히 초기화
+            //em.close() -> 영속성 컨텍스트를 종료
+
+//            //준영속 상태의 예시
+//            Member member = em.find(Member.class, 1L);
+//            member.setName("AAA");
+//            em.detach(member); //-> JPA에서 관리하지 않음 (준영속 상태로 전환)
 
 
             tx.commit();
