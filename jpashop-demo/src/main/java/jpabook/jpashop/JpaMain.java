@@ -1,5 +1,8 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -13,6 +16,10 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
 
         try {
+            //예시 코드
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());    //연관 관계 메서드
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
