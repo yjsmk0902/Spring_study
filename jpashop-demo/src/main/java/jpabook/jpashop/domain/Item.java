@@ -1,9 +1,6 @@
 package jpabook.jpashop.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +11,14 @@ public class Item {
     @GeneratedValue
     @Column(name = "ITEM_ID")
     private Long id;
+
+    //N:M 관계는 1:N / N:1로
+    //  테이블의 N:M 관계는 중간 테이블을 이용해서 1:N, N:1
+    //  실전에서는 중간 테이블이 단순하지 않다.
+    //  @ManyToMany 는 제약: 필드 추가X, 엔티티 테이블 불일치
+    //  실전에서는 걍 쓰지 마라 -> 여기서는 그냥 함 해본거임
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
 
     private String name;
 
