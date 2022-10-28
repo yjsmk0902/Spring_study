@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity{
 
     @Id
     @GeneratedValue
@@ -61,17 +61,6 @@ public class Member {
     //value =>  EnumType.ORDINAL: enum 순서를 DB에 저장 (사용하지 말자)
     //          EnumType.STRING: enum 이름을 DB에 저장  (필수 조건)
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
-
-    //[@Temporal Option]
-    //LocalDate, LocalDateTime을 사용할 때는 생략 가능
-    //value =>  TemporalType.Date       : 날짜, DB date 타입과 매핑 (2013-10-11)
-    //          TemporalType.TIME       : 시간, DB time 타입과 매핑 (11:11:11)
-    //          TemporalType.TIMESTAMP  : 날짜와 시간, DB timestamp 타입과 매핑 (2013-10-11 11:11:11)
 
     @Lob
     private String description;
@@ -150,22 +139,6 @@ public class Member {
 
     public RoleType getRoleType() {
         return roleType;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
     }
 
     public String getDescription() {

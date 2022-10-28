@@ -1,9 +1,12 @@
 package hellojpa;
 
+import hellojpa.inheritance.Movie;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class JpaMain {
@@ -76,7 +79,7 @@ public class JpaMain {
 //            //준영속 상태의 예시
 //            Member member = em.find(Member.class, 1L);
 //            member.setName("AAA");
-//            em.detach(member); //-> JPA에서 관리하지 않음 (준영속 상태로 전환)
+//            em.detach(member); //-> JPA 에서 관리하지 않음 (준영속 상태로 전환)
 
 //            //객체를 테이블에 맞추어 모델링 (식별자로 다시 조회, 객체 지향적인 방법은 아니다.)
 //            Team team = new Team();
@@ -207,9 +210,58 @@ public class JpaMain {
             //  @ManyToMany => @OneToMany + @ManyToOne
             //  연결 테이블의 PK는 유연하게 따로 설정 <-> 두개의 FK를 묶어서 PK로 쓰는 방법도 있음
 
+            //고오급 매핑 - 상속관계 매핑
+            //  @주요 어노테이션
+            //      @Inheritance(strategy = Inheritance.XXX) => 부모 엔티티에 써준다. 전략에 따라 XXX 가 바뀜
+            //      @DiscriminatorColumn => 부모 엔티티에 써준다. 타입 종류 이름 지정 가능. 디폴트는 name = "DTYPE"
+            //      @DiscriminatorValue("XXX") => 자식 엔티티에 써준다.
 
+            //  1. 조인 전략 -> 데이터를 각각 테이블로 나누고 구성할 때 조인으로 가져오는거
+            //      InheritanceType.JOINED 옵션 선택하기
+            //      장점 : 테이블 정규화 / 외래 키 참조 무결성 제약조건 활용가능 / 저장공간 효율화
+            //      단점 : 조회시 조인을 많이 사용하여 성능 저하 / 조회 쿼리 복잡 / 데이터 저장시 INSERT SQL 2번 호출
 
+            //  2. 단일 테이블 전략 -> 논리 모델을 그냥 한 테이블로 다 합쳐버리는거 (다 때려박기)
+            //      InheritanceType.SINGLE_TABLE 옵션 선택하기 (DTYPE 생략 가능하지만 있는게 운영상 좋음)
+            //      장점 : 조인이 필요없으므로 성능 빠름 / 조회 쿼리 단순
+            //      단점 : 자식 엔티티 매핑 컬럼은 모두 null 을 허용해버림 / 테이블이 크고 복잡해질 수 있음
 
+            //  3. 구현클래스마다 테이블 전략 -> 각 테이블 별로 다 정보를 구현해버리기      => DB 설계자와 ORM 전문가가 비추함
+            //      InheritanceType.TABLE_PER_CLASS 옵션 선택하기
+            //      장점 : 서브 타입을 명확하게 구분하여 처리할 때 효과적 / not null 사용 가능
+            //      단점 : 여러 자식 테이블을 한꺼번에 조회할 때 성능 느림 / 자식들을 통합해서 쿼리하기 어려움
+
+//            Movie movie = new Movie();
+//            movie.setDirector("directorA");
+//            movie.setActor("actorA");
+//            movie.setName("영화앙");
+//            movie.setPrice(15000);
+//
+//            em.persist(movie);
+//
+//            em.flush();
+//            em.clear();
+//
+//            Movie findMovie = em.find(Movie.class, movie.getId());
+//            System.out.println("findMovie = " + findMovie);
+//
+            //      자세한내용은 PDF 에 있는 그림 잘 확인해보기
+
+            //@MappedSuperClass => 공통 매핑 정보가 필요할 때 사용 (ex. id, name 뭐 이런거)
+            //  상속관계 매핑X (헷갈리지 말자 진짜)
+            //  엔티티X, 테이블과 매핑X
+            //  부모 클래스를 상속 받는 자식 클래스에 매핑 정보만 제공
+            //  조회, 검색 불가(em.find(BaseEntity) 불가)
+            //  직접 생성해서 사용할 일이 없으므로 추상 클래스 권장
+            //  해당 클래스에 @Colum 을 사용하여 이름도 매핑 가능
+            Member member = new Member();
+            member.setUsername("userA");
+            member.setCreatedBy("Kim");
+            member.setCreatedDate(LocalDateTime.now());
+
+            em.persist(member);
+            em.flush();
+            em.clear();
 
             tx.commit();
         } catch (Exception e) {
