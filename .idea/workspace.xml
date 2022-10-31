@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="다양한 연관관계 매핑 - 실전예제">
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="고급 매핑 - 실전 예제">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,6 +63,8 @@
       <workItem from="1666915483843" duration="11000" />
       <workItem from="1666935685878" duration="68000" />
       <workItem from="1667179227701" duration="701000" />
+      <workItem from="1667187291452" duration="168000" />
+      <workItem from="1667264836451" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -134,7 +136,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666935713085</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="고급 매핑 - 상속관계 / @MappedSuperclass">
+      <created>1667187407879</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1667187407879</updated>
+    </task>
+    <task id="LOCAL-00012" summary="고급 매핑 - 실전 예제">
+      <created>1667187441072</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1667187441072</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,7 +178,10 @@
     <MESSAGE value="연관관계 매핑 실전 예제" />
     <MESSAGE value="다양한 연관관계 매핑" />
     <MESSAGE value="다양한 연관관계 매핑 - 실전예제" />
-    <option name="LAST_COMMIT_MESSAGE" value="다양한 연관관계 매핑 - 실전예제" />
+    <MESSAGE value="고급 매핑 - 상속관계 / @MappedSuperclass" />
+    <MESSAGE value="고급 매핑 - 실" />
+    <MESSAGE value="고급 매핑 - 실전 예제" />
+    <option name="LAST_COMMIT_MESSAGE" value="고급 매핑 - 실전 예제" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

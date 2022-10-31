@@ -254,14 +254,95 @@ public class JpaMain {
             //  조회, 검색 불가(em.find(BaseEntity) 불가)
             //  직접 생성해서 사용할 일이 없으므로 추상 클래스 권장
             //  해당 클래스에 @Colum 을 사용하여 이름도 매핑 가능
-            Member member = new Member();
-            member.setUsername("userA");
-            member.setCreatedBy("Kim");
-            member.setCreatedDate(LocalDateTime.now());
+//            Member member = new Member();
+//            member.setUsername("userA");
+//            member.setCreatedBy("Kim");
+//            member.setCreatedDate(LocalDateTime.now());
+//
+//            em.persist(member);
+//            em.flush();
+//            em.clear();
 
-            em.persist(member);
-            em.flush();
-            em.clear();
+            //프록시와 연관관계
+            //  프록시의 특징
+            //      실제 클래스를 상속 받아서 만들어짐
+            //      실제 클래스와 겉모양이 같다.
+            //      사용하는 입장에서는 진짜인지 프록시인지 구분하지 않아도 된다. (이론상은 그러함)
+            //      프록시 객체는 실제 객체의 참조를 보관
+            //      프록시 객체를 호출하면 프록시 객체는 실제 객체의 메소드 호출
+            //      --------------------------------------------
+            //      프록시 객체는 처음 사용할 때 한 번만 초기화
+            //      프록시 객체를 초기화할 때, 프록시 객체가 실제 엔티티로 바뀌는 건 아님
+            //      초기화되면 프로시 객체를 통해서 실제 엔티티에 접근 가능
+            //      프록시 객체는 원본 엔티티를 상속받음, 따라서 타입 체크시 주의해야함(== 대신 instance of 를 사용해야함)
+            //      영속성 컨텍스트에 찾는 엔티티가 이미 있으면 em.getReference()를 호출해도 실제 엔티티가 반환
+            //      영속성 컨텍스트의 도움을 받을 수 없는 준영속 상태(em.close() / em.detach(객체))일 때, 프록시를 초기화하면 문제 발생
+            //  프록시 확인
+            //      프록시 인스턴스의 초기화 여부 확인
+            //          emf.getPersistenceUnitUtil.isLoaded(Object entity)
+            //      프록시 클래스 확인 방법
+            //          entity.getClass().getName() -> 걍 무식하게 찍어야됨
+            //      프록시 강제 초기화
+            //          org.hibernate.Hibernate.initialize(entity)
+            //          -> entity.getUsername() 같은걸로 강제 호출로 초기화도 되긴 하지만 위처럼 강제 초기화도 가능
+            //  em.find() vs em.getReference()
+            //      em.find() -> DB를 통해서 실제 엔티티 객체를 조회
+            //      em.getReference() -> DB 조회를 미루는 가짜(프록시) 엔티티 객체를 조회
+            //      근데 거의 안쓰긴 함 => 즉시 로딩과 지연 로딩 배울려고 하는거임
+
+            //즉시 로딩과 지연로딩(Fetch)
+            //  @ManyToOne(fetch = FetchType.LAZY) => 지연로딩
+            //  @ManyToOne(fetch = FetchType.EAGER) => 즉시로딩
+
+            //Team 을 자주 사용하지 않을 경우, 조회할 때 굳이 Team 까지 조인할 필요가 없다.
+            //따라서 지연로딩으로 성능을 최적화한다.
+//            Team team = new Team();     //Team 의 fetch 가 LAZY 로 되어있음
+//            team.setName("TeamA");
+//            em.persist(team);
+//
+//            Member member = new Member();
+//            member.setUsername("MemberA");
+//            member.setTeam(team);
+//            em.persist(member);
+//
+//            em.flush();
+//            em.clear();
+//
+//            Member findMember = em.find(Member.class, member.getId());      //-> 이때까지는 초기화가 안되어있음
+//            findMember.getTeam().getName(); //-> Team 의 값을 실제로 사용하는 시점에 프록시 초기화
+            //실무에서는 절대로 즉시로딩 쓰지 않기!
+            //     => 즉시 로딩을 적용하면 예상하지 못한 SQL 이 발생
+            //        즉시 로딩은 JPQL 에서 N+1 문제를 일으킴
+            //        @ManyToOne, @OneToOne 은 기본이 즉시 로딩 -> LAZY 로 전부 설정해줘야함
+            //        @OneToMany 는 기본이 지연 로딩
+            //가이드에서도 가급적 지연로딩을 사용하라 권함.
+
+//            Team teamA = new Team();
+//            Team teamB = new Team();
+//            teamA.setName("TeamA");
+//            teamB.setName("TeamB");
+//
+//            em.persist(teamA);
+//            em.persist(teamB);
+//
+//            Member memberA = new Member();
+//            Member memberB = new Member();
+//            memberA.setUsername("MemberA");
+//            memberB.setUsername("MemberB");
+//            memberA.setTeam(teamA);
+//            memberB.setTeam(teamB);
+//
+//            em.persist(memberA);
+//            em.persist(memberB);
+//
+//            em.flush();
+//            em.clear();
+//            List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
+
+            //SQL: select * from Member
+            //SQL: select * from Team where TEAM_ID = xxx -> SQL 이 하나 더날아감 (즉시 로딩이기 때문 (N+1 prob.))
+            //따라서 LAZY로 설정해야함
+            //JPQL 의 etch join 으로 해결 가능 나중에 배울거임
 
             tx.commit();
         } catch (Exception e) {
