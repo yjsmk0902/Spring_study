@@ -1,5 +1,6 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Book;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
 
@@ -16,9 +17,16 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
 
         try {
-            //예시 코드
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());    //연관 관계 메서드
+//            //예시 코드
+//            Order order = new Order();
+//            order.addOrderItem(new OrderItem());    //연관 관계 메서드
+
+            //예시코드 - 고오급 매핑
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("Kim");
+
+            em.persist(book);
 
             tx.commit();
         } catch (Exception e) {
