@@ -1,6 +1,7 @@
 package hellojpa;
 
-import hellojpa.inheritance.Movie;
+import hellojpa.cascade.Child;
+import hellojpa.cascade.Parent;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -342,7 +343,61 @@ public class JpaMain {
             //SQL: select * from Member
             //SQL: select * from Team where TEAM_ID = xxx -> SQL 이 하나 더날아감 (즉시 로딩이기 때문 (N+1 prob.))
             //따라서 LAZY로 설정해야함
-            //JPQL 의 etch join 으로 해결 가능 나중에 배울거임
+            //JPQL 의 fetch join 으로 해결 가능 나중에 배울거임
+
+            //영속성 전이 (CASCADE)
+            //  특정 엔티티를 영속 상태로 만들 때 연관된 엔티티도 함께 영속 상태로 만들고 싶을 때 씀
+            //  @OneToMany(mappedBy = "...", cascade = CascadeType.PERSIST)
+
+//            Child child1 = new Child();
+//            Child child2 = new Child();
+//
+//            Parent parent = new Parent();
+//            parent.addChild(child1);
+//            parent.addChild(child2);
+//            //em.persist(...)를 세번씩이나 호출해야함 -> 매우 귀찮음
+//            em.persist(parent);
+//            //@OneToMany(mappedBy = "parent", cascade = CascadeType.PERSIST)로 작성시 아래꺼는 안써도됨
+//            em.persist(child1);
+//            em.persist(child2);
+            //  CASCADE 의 종류
+            //      ALL : 모두 적용     -> 요거나
+            //      PERSIST : 영속     -> 요거 씀
+            //      REMOVE : 삭제
+            //      MERGE : 병합
+            //      REFRESH : 리프레시
+            //      DETACH : 떼버리기
+            //  단일 엔티티에 종속적일 때만 사용하는 것을 권장
+
+            //고아 객체
+            //  고아 객체 제거: 부모 엔티티와 연관관계가 끊어진 자식 엔티티를 자동으로 삭제
+            //  orphanRemoval = true -> DELETE FROM CHILD WHERE ID=?
+//            Child child1 = new Child();
+//            Child child2 = new Child();
+//
+//            Parent parent = new Parent();
+//            parent.addChild(child1);
+//            parent.addChild(child2);
+//
+//            em.persist(parent);
+//
+//            em.flush();
+//            em.close();
+//
+//            Parent findParent = em.find(Parent.class, parent.getId());
+//            findParent.getChildList().remove(0);
+            //  이것도 영속성 전이와 마찬가지로 참조하는 곳이 하나일 때만 사용해야함!
+            //  특정 엔티티가 개인 소유할 때 사용
+            //  @OneToXXX 에만 가능
+            //  개념적으로 부모를 제거하면 자식은 고아가 된다. 따라서 고아 객체 제거 기능을 활성화하면
+            //  부모를 제거할 때 자식도 함께 제거된다. -> cascade = CascadeType.REMOVE 와 같음
+
+            //영속성 전이 + 고아 객체, 생명주기
+            //  CascadeType.ALL + orphanRemoval = true
+            //  스스로 생명주기를 관리하는 엔티티는 em.persist(...)로 영속화, em.remove()로 제거
+            //  두 옵션을 모두 활성화하면 부모 엔티티를 통해서 자식의 생명 주기를 관리할 수 있음
+            //  도메인 주도 설계(DDD)의 Aggregate Root 개념을 구현할 때 유용함
+
 
             tx.commit();
         } catch (Exception e) {
