@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Table(name="ORDERS")
 public class Order extends BaseEntity{
@@ -15,7 +17,7 @@ public class Order extends BaseEntity{
     @Column(name = "ORDER_ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     //@ManyToOne
     //  optional => false 로 설정하면 연관된 엔티티가 항상 있어야 한다.
     //  fetch => 글로벌 패치 전략을 설정한다.
@@ -32,11 +34,11 @@ public class Order extends BaseEntity{
     //  위의 속성들은 @Column 의 속성과 같음
     private Member member;
 
-    @OneToOne
+    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     //@OneToMany
     //  mappedBy => 연관관계의 주인 필드를 선택한다.
     //  fetch => 글로벌 페치 전략을 설정한다.

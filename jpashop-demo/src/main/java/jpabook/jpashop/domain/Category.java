@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 public class Category extends BaseEntity{
 
@@ -12,7 +14,7 @@ public class Category extends BaseEntity{
     @Column(name = "CATEGORY_ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch= LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Category parent;
 
