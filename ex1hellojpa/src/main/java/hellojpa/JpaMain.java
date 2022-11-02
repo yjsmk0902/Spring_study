@@ -2,6 +2,9 @@ package hellojpa;
 
 import hellojpa.cascade.Child;
 import hellojpa.cascade.Parent;
+import hellojpa.value_type.Address;
+import hellojpa.value_type.AddressEntity;
+import hellojpa.value_type.Period;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,6 +12,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -398,6 +402,72 @@ public class JpaMain {
             //  두 옵션을 모두 활성화하면 부모 엔티티를 통해서 자식의 생명 주기를 관리할 수 있음
             //  도메인 주도 설계(DDD)의 Aggregate Root 개념을 구현할 때 유용함
 
+            //임베디드 타입의 활용
+//            Member member = new Member();
+//            member.setUsername("MemberA");
+//            member.setHomeAddress(new Address("city", "street", "100000"));
+//            member.setPeriod(new Period());
+//
+//            em.persist(member);
+
+            //값 타입 공유 참조 부작용 예시
+//            Address address = new Address("city", "street", "10000");
+//
+//            Member memberA = new Member();
+//            memberA.setUsername("MemberA");
+//            memberA.setHomeAddress(address);
+//            em.persist(memberA);
+//
+//            Address copyAddress = new Address(address.getCity(), address.getStreet(), address.getZipcode());
+//
+//            Member memberB = new Member();
+//            memberB.setUsername("MemberB");
+//            //memberB.setHomeAddress(address);
+//            memberB.setHomeAddress(copyAddress);            //이렇게 복사해서 해야함
+//            em.persist(memberB);
+//
+//            memberA.getHomeAddress().setCity("newCity");    //memberA, memberB 모두 바뀌게 된다.
+
+            //값 타입 저장, 조회, 수정 예제
+            Member member = new Member();
+            member.setUsername("MemberA");
+            member.setHomeAddress(new Address("cityA", "street", "10000"));
+
+            member.getFavoriteFoods().add("치킨");
+            member.getFavoriteFoods().add("족발");
+            member.getFavoriteFoods().add("피자");
+
+            member.getAddressHistory().add(new AddressEntity("cityB", "street", "10000"));
+            member.getAddressHistory().add(new AddressEntity("cityC", "street", "10000"));
+
+            em.persist(member);         //저장
+
+            em.flush();
+            em.clear();
+
+            Member findMember = em.find(Member.class, member.getId());  //조회
+            List<AddressEntity> addressHistory = findMember.getAddressHistory();  //지연 로딩 (기본값이 LAZY)
+            for (AddressEntity address : addressHistory) {
+                System.out.println("address.getCity() = " + address.getAddress().getCity());
+            }
+            Set<String> favoriteFoods = findMember.getFavoriteFoods();      //지연 로딩
+            for (String favoriteFood : favoriteFoods) {
+                System.out.println("favoriteFood = " + favoriteFood);
+
+            }
+
+            //cityA -> cityC
+            //findMember.getHomeAddress().setCity("cityC");   //이렇게하면 큰일남
+            Address a = findMember.getHomeAddress();
+            findMember.setHomeAddress(new Address("cityC", a.getStreet(), a.getZipcode()));
+
+            //치킨 -> 한식
+            findMember.getFavoriteFoods().remove("치킨");
+            findMember.getFavoriteFoods().add("한식");
+
+            //addressHistory 바꾸기 cityB -> cityA
+            findMember.getAddressHistory().remove(new AddressEntity("cityB", "street", "10000"));
+            findMember.getAddressHistory().add(new AddressEntity("cityA", "street", "10000"));
 
             tx.commit();
         } catch (Exception e) {

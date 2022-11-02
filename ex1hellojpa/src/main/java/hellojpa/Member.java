@@ -1,9 +1,14 @@
 package hellojpa;
 
+import hellojpa.value_type.Address;
+import hellojpa.value_type.AddressEntity;
+import hellojpa.value_type.Period;
+
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Member extends BaseEntity{
@@ -85,12 +90,72 @@ public class Member extends BaseEntity{
     //@Enumerated => enum 타입 매핑
     //@Lob => BLOB, CLOB 매핑 (저장 타입이 굉장히 큰 컨텐츠 일때)
     //@Transient => 특정 필드를 컬럼에 매핑하지 않음 (매핑 무시)
+
+    //기간 Period
+    @Embedded
+    private Period period;
+    //private LocalDateTime startDate;
+    //private LocalDateTime endDate;
+
+    //주소 Address
+    @Embedded
+    private Address homeAddress;
+    //private String city;
+    //private String street;
+    //private String zipcode;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="city", column=@Column(name = "WORK_CITY")),
+            @AttributeOverride(name="street", column=@Column(name = "WORK_STREET")),
+            @AttributeOverride(name="zipcode", column=@Column(name = "WORK_ZIPCODE"))
+    })
+    private Address workAddress;
+
+    @ElementCollection
+    @CollectionTable(name = "FAVORITE_FOODS", joinColumns =
+    @JoinColumn(name = "MEMBER_ID"))
+    @Column(name = "FOOD_NAME")
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    //    @ElementCollection
+//    @CollectionTable(name = "ADDRESS", joinColumns =
+//    @JoinColumn(name = "MEMBER_ID"))
+//    private List<Address> addressHistory = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="MEMBER_ID")
+    private List<AddressEntity> addressHistory = new ArrayList<>();
+
     public Member() {
     }
 
     public Member(Long id, String username) {
         this.id = id;
         this.username = username;
+    }
+
+    public Set<String> getFavoriteFoods() {
+        return favoriteFoods;
+    }
+
+    public List<AddressEntity> getAddressHistory() {
+        return addressHistory;
+    }
+
+    public Period getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Period period) {
+        this.period = period;
+    }
+
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
     }
 
     public Long getId() {

@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="영속성 전이와 고아 객체" />
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="프록시와 연관관계 관리 - 실전예제">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/exception" />
   </component>
   <component name="GitToolBoxStore">
@@ -66,6 +74,9 @@
       <workItem from="1667286979479" duration="98000" />
       <workItem from="1667348099379" duration="54000" />
       <workItem from="1667349868819" duration="99000" />
+      <workItem from="1667350302180" duration="220000" />
+      <workItem from="1667350528625" duration="134000" />
+      <workItem from="1667354095248" duration="10000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -165,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667349889580</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="프록시와 연관관계 관리 - 실전 예제">
+      <created>1667350347132</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1667350347132</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +216,8 @@
     <MESSAGE value="고급 매핑 - 실전 예제" />
     <MESSAGE value="프록시와 연관관계 관리 - 즉시로딩과 지연로딩" />
     <MESSAGE value="영속성 전이와 고아 객체" />
-    <option name="LAST_COMMIT_MESSAGE" value="영속성 전이와 고아 객체" />
+    <MESSAGE value="프록시와 연관관계 관리 - 실전 예제" />
+    <option name="LAST_COMMIT_MESSAGE" value="프록시와 연관관계 관리 - 실전 예제" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
