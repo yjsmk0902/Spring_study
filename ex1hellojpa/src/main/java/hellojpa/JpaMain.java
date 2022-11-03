@@ -5,11 +5,15 @@ import hellojpa.cascade.Parent;
 import hellojpa.value_type.Address;
 import hellojpa.value_type.AddressEntity;
 import hellojpa.value_type.Period;
+import org.hibernate.Criteria;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -429,45 +433,108 @@ public class JpaMain {
 //            memberA.getHomeAddress().setCity("newCity");    //memberA, memberB 모두 바뀌게 된다.
 
             //값 타입 저장, 조회, 수정 예제
-            Member member = new Member();
-            member.setUsername("MemberA");
-            member.setHomeAddress(new Address("cityA", "street", "10000"));
+//            Member member = new Member();
+//            member.setUsername("MemberA");
+//            member.setHomeAddress(new Address("cityA", "street", "10000"));
+//
+//            member.getFavoriteFoods().add("치킨");
+//            member.getFavoriteFoods().add("족발");
+//            member.getFavoriteFoods().add("피자");
+//
+//            member.getAddressHistory().add(new AddressEntity("cityB", "street", "10000"));
+//            member.getAddressHistory().add(new AddressEntity("cityC", "street", "10000"));
+//
+//            em.persist(member);         //저장
+//
+//            em.flush();
+//            em.clear();
+//
+//            Member findMember = em.find(Member.class, member.getId());  //조회
+//            List<AddressEntity> addressHistory = findMember.getAddressHistory();  //지연 로딩 (기본값이 LAZY)
+//            for (AddressEntity address : addressHistory) {
+//                System.out.println("address.getCity() = " + address.getAddress().getCity());
+//            }
+//            Set<String> favoriteFoods = findMember.getFavoriteFoods();      //지연 로딩
+//            for (String favoriteFood : favoriteFoods) {
+//                System.out.println("favoriteFood = " + favoriteFood);
+//
+//            }
+//
+//            //cityA -> cityC
+//            //findMember.getHomeAddress().setCity("cityC");   //이렇게하면 큰일남
+//            Address a = findMember.getHomeAddress();
+//            findMember.setHomeAddress(new Address("cityC", a.getStreet(), a.getZipcode()));
+//
+//            //치킨 -> 한식
+//            findMember.getFavoriteFoods().remove("치킨");
+//            findMember.getFavoriteFoods().add("한식");
+//
+//            //addressHistory 바꾸기 cityB -> cityA
+//            findMember.getAddressHistory().remove(new AddressEntity("cityB", "street", "10000"));
+//            findMember.getAddressHistory().add(new AddressEntity("cityA", "street", "10000"));
 
-            member.getFavoriteFoods().add("치킨");
-            member.getFavoriteFoods().add("족발");
-            member.getFavoriteFoods().add("피자");
+            //JPQL 소개
+            //  가장 단순한 조회 방법
+            //  em.find()
+            //  객체 그래프 탐색(a.getB().getC())
+            //  JPA 를 사용하면 엔티티 객체를 중심으로 개발
+            //  문제는 검색 쿼리
+            //  검색을 할 때도 테이블이 아닌 엔티티 객체를 대상으로 검색
+            //  모든 DB 데이터를 객체로 변환해서 검색하는 것은 불가능
+            //  애플리케이션이 필요한 데이터만 DB 에서 불러오려면 결국 검색 조건이 포함된 SQL 이 필요함
+            //  JPA 는 SQL 을 추상화한 JPQL 이라는 객체 지향 쿼리 언어 제공
+            //  SQL 과 문법이 유사하고, SELECT, FROM, WHERE, GROUP BY, HAVING, JOIN 을 지원한다.
+            //  JPQL 은 엔티티 객체를 대상으로 쿼리 <=> SQL 은 DB 테이블을 대상으로 쿼리
+//            List<Member> resultList = em.createQuery(
+//                    "select m from Member m where m.username like '%kim%'",
+//                    Member.class
+//            ).getResultList();
+//            for (Member member : resultList) {
+//                System.out.println("member = " + member);
+//            }
+            //  테이블이 아닌 객체를 대상으로 검색하는 객체 지향 쿼리
+            //  SQL 을 추상화해서 특정 DB SQL 에 의존 X
+            //  JPQL 을 한마디로 정의하면 객체 지향 SQL
+            //  근데 동적쿼리를 만들기가 너무 어려움
 
-            member.getAddressHistory().add(new AddressEntity("cityB", "street", "10000"));
-            member.getAddressHistory().add(new AddressEntity("cityC", "street", "10000"));
+            //Criteria (걍 알아만 두자)
+            //  Criteria 사용 준비
+//            CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//            CriteriaQuery<Member> query = criteriaBuilder.createQuery(Member.class);
+//            //  루트 클래스 (조회를 시작할 클래스)
+//            Root<Member> m = query.from(Member.class);
+//            //  쿼리 생성
+//            CriteriaQuery<Member> cq = query.select(m).where(criteriaBuilder.equal(m.get("username"), "kim"));
+//            List<Member> resultList = em.createQuery(cq).getResultList();
+            //  문자가 아닌 자바코드로 JPQL 을 작성할 수 있음
+            //  JPQL 빌더 역할
+            //  JPA 공식 기능
+            //  단점: 너무 복잡하고 실용성이 없다. -> 걍 진짜 쓸데 없음
+            //  그래서 Criteria 대신에 QueryDSL 을 쓴다.
 
-            em.persist(member);         //저장
+            //QueryDSL
+            //  문자가 아닌 자바코드로 JPQL 을 작성할 수 있음
+            //  JPQL 빌더 역할
+            //  컴파일 시점에 문법 오류를 찾을 수 있음
+            //  동적쿼리 작성이 편리하다
+            //  단순하고 쉬움
+            //  실무에서 사용하는 것을 권장함!!
 
-            em.flush();
-            em.clear();
+            //Native SQL
+            //  JPA 가 제공하는 SQL 을 직접 사용하는 기능
+            //  JPQL 로 해결할 수 없는 특정 DB 에 의존적인 기능
+            //  ex) 오라클 CONNECT BY, 특정 DB만 사용하는 SQL 힌트
+//            List resultList = em.createNativeQuery(
+//                    "SELECT ID, AGE, TEAM_ID, NAME FROM MEMBER WHERE NAME = 'kim'"
+//                    , Member.class
+//            ).getResultList();
+            //  JDBC 직접 사용, SpringJdbcTemplate 등
+            //      JPA 를 사용하면서 JDBC 커넥션을 직접 사용하거나, 스프링 JdbcTemplate, MyBatis 등을 함께 사용 가능
+            //      단 영속성 컨텍스트를 적절한 시점에 강제로 flush 필요
+            //      ex) JPA 를 우회해서 SQL 을 실행하기 직전에 영속성 컨텍스트 수동 flush
 
-            Member findMember = em.find(Member.class, member.getId());  //조회
-            List<AddressEntity> addressHistory = findMember.getAddressHistory();  //지연 로딩 (기본값이 LAZY)
-            for (AddressEntity address : addressHistory) {
-                System.out.println("address.getCity() = " + address.getAddress().getCity());
-            }
-            Set<String> favoriteFoods = findMember.getFavoriteFoods();      //지연 로딩
-            for (String favoriteFood : favoriteFoods) {
-                System.out.println("favoriteFood = " + favoriteFood);
+            
 
-            }
-
-            //cityA -> cityC
-            //findMember.getHomeAddress().setCity("cityC");   //이렇게하면 큰일남
-            Address a = findMember.getHomeAddress();
-            findMember.setHomeAddress(new Address("cityC", a.getStreet(), a.getZipcode()));
-
-            //치킨 -> 한식
-            findMember.getFavoriteFoods().remove("치킨");
-            findMember.getFavoriteFoods().add("한식");
-
-            //addressHistory 바꾸기 cityB -> cityA
-            findMember.getAddressHistory().remove(new AddressEntity("cityB", "street", "10000"));
-            findMember.getAddressHistory().add(new AddressEntity("cityA", "street", "10000"));
 
             tx.commit();
         } catch (Exception e) {
