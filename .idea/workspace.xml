@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="변경 감지 &amp; merge">
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="주문 서비스 개발">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,6 +85,8 @@
       <workItem from="1667790071050" duration="628000" />
       <workItem from="1668052193495" duration="70000" />
       <workItem from="1668139325608" duration="967000" />
+      <workItem from="1668394186504" duration="64000" />
+      <workItem from="1668471195994" duration="62000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -226,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668052251612</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="주문 서비스 개발">
+      <created>1668394219564</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1668394219564</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +275,8 @@
     <MESSAGE value="객체지향 쿼리 언어1 - 기본문법&#10;기본 문법과 쿼리 API&#10;프로젝션(SELECT)&#10;페이징 API&#10;내부, 외부, 세타 조인 &amp; ON절을 이용한 조인" />
     <MESSAGE value="객체지향 쿼리 언어2 - 중급 문법" />
     <MESSAGE value="변경 감지 &amp; merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="변경 감지 &amp; merge" />
+    <MESSAGE value="주문 서비스 개발" />
+    <option name="LAST_COMMIT_MESSAGE" value="주문 서비스 개발" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
