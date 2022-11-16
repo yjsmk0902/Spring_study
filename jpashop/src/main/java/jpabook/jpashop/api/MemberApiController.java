@@ -68,6 +68,9 @@ public class MemberApiController {
     }
 
     //조회 V2: 응답 값으로 엔티티가 아닌 별도의 DTO 를 반환한다.
+    //  엔티티를 DTO 로 변환해서 반환한다.
+    //  엔티티가 변해도 API 스펙이 변경되지 않는다.
+    //  추가로 Result 클래스로 컬렉션을 감싸서 향후 필요한 필드를 추가할 수 있다.
     @GetMapping("/api/v2/members")
     public Result membersV2(){
         List<Member> findMembers = memberService.findMembers();
