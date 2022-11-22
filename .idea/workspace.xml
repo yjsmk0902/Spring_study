@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="DB에 기본 초기 데이터 넣기">
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="간단한 주문 조회 API 개발">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,6 +90,8 @@
       <workItem from="1668563182696" duration="700000" />
       <workItem from="1668739531917" duration="60000" />
       <workItem from="1669017112432" duration="9000" />
+      <workItem from="1669083667690" duration="92000" />
+      <workItem from="1669161269050" duration="19000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -252,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668739559711</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="간단한 주문 조회 API 개발">
+      <created>1669083704172</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1669083704172</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,7 +279,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="스프링 트랜잭션 전파" />
     <MESSAGE value="스프링 트랜잭션 전파 활용" />
     <MESSAGE value="JPA 시작하기" />
     <MESSAGE value="영속성 컨텍스트" />
@@ -295,7 +303,8 @@
     <MESSAGE value="주문 서비스 개발" />
     <MESSAGE value="API 개발 기본" />
     <MESSAGE value="DB에 기본 초기 데이터 넣기" />
-    <option name="LAST_COMMIT_MESSAGE" value="DB에 기본 초기 데이터 넣기" />
+    <MESSAGE value="간단한 주문 조회 API 개발" />
+    <option name="LAST_COMMIT_MESSAGE" value="간단한 주문 조회 API 개발" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
