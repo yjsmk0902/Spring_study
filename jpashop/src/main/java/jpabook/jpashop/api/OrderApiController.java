@@ -6,6 +6,10 @@ import jpabook.jpashop.domain.OrderItem;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
+import jpabook.jpashop.repository.order.query.OrderFlatDTO;
+import jpabook.jpashop.repository.order.query.OrderItemQueryDTO;
+import jpabook.jpashop.repository.order.query.OrderQueryDTO;
+import jpabook.jpashop.repository.order.query.OrderQueryRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +25,29 @@ import java.util.stream.Collectors;
 public class OrderApiController {
 
     private final OrderRepository orderRepository;
+    private final OrderQueryRepository orderQueryRepository;
+
+    //API 개발 고급 정리
+    //  엔티티 조회
+    //      엔티티를 조회해서 그대로 반환: V1
+    //      엔티티 조회 후 DTO 로 변환: V2
+    //      페치 조인으로 쿼리 수 최적화: V3
+    //      컬렉션 페이징과 한계 돌파: V3.1
+    //          컬렉션은 페치 조인시 페이징이 불가능
+    //          ToOne 관계는 페치 조인으로 쿼리 수 최적화
+    //          컬렉션은 페치 조인 대신에 지연 로딩을 유지하고, hibernate.default_batch_fetch_size, @BatchSize 로 최적화
+    //  DTO 직접 조회
+    //      JPA 에서 DTO 를 직접 조회: V4
+    //      컬렉션 조회 최적화 - 일대다 관계인 컬렉션은 IN 절을 활용해서 메모리에 미리 조회해서 최적화: V5
+    //      플랫 데이터 최적화 - JOIN 결과를 그대로 조회 후 애플리케이션에서 원하는 모양으로 직접 변환: V6
+    //  권장 순서
+    //      1. 엔티티 조회 방식으로 우선 접근    (페치 조인이나 batch 를 통해 유연한 성능 최적화 가능)
+    //          -페치 조인으로 쿼리 수를 최적화
+    //          -컬렉션 최적화
+    //              페이징 필요한 경우: hibernate.default_batch_fetch_size, @BatchSize 로 최적화
+    //              페이징 필요X: 페치 조인 사용
+    //      2. 엔티티 조회 방식으로 해결이 안되면 DTO 조회 방식 사용 (유연한 성능 최적화가 힘듦)
+    //      3. DTO 조회 방식으로 해결이 안되면 NativeSQL or 스프링 JdbcTemplate
 
     //V1. 엔티티 직접 노출
     //  엔티티가 변하면 API 스펙이 변한다.
@@ -103,6 +130,42 @@ public class OrderApiController {
 
     //V4. JPA 에서 DTO 로 바로 조회, 컬렉션 N 조회 (1+N Query)
     //  페이징 가능
+    //  ToOne 관계들을 먼저 조회하고, ToMany 관계는 각각 별도로 처리한다.
+    //      ToOne 관계는 조인해도 데이터 row 수가 증가하지 않는다.
+    //      ToMany 관계는 조인하면 row 수가 증가한다.
+    //  row 수가 증가하지 않는 ToOne 관계는 조인으로 최적화하기 쉬우므로 한번에 조회하고,
+    //  ToMany 관계는 최적화하기 어려우므로 findOrderItems() 같은 별도의 메소드로 조회한다.
+    @GetMapping("/api/v4/orders")
+    public List<OrderQueryDTO> ordersV4() {
+        return orderQueryRepository.findOrderQueryDTOs();
+    }
+
+    //V5. JPA 에서 DTO 로 바로 조회, 컬렉션 조회 최적화 버전(1+1 Query)
+    //  페이징 가능
+    //  Query: 루트 1번, 컬렉션 1번
+    //  ToOne 관계들을 먼저 조회하고, 여기서 얻은 식별자 orderId 로 ToMany 관계인 OrderItem 을 한번에 조회
+    //  MAP 을 사용해서 매칭 성능 향상 (O(1))
+    @GetMapping("/api/v5/orders")
+    public List<OrderQueryDTO> ordersV5() {
+        return orderQueryRepository.findAllByDTO_optimization();
+    }
+
+    //V6. JPA 에서 DTO 로 바로 조회, 플랫 데이터 (1Query)
+    //  페이징 불가능
+    //  Query: 1번
+    //  단점
+    //      쿼리는 한번이지만 조인으로 인해 DB 에서 애플리케이션에 전달하는 데이터에 중복 데이터가 추가되므로 상황에 따라 V5 보다 더 느릴 수 있다.
+    //      애플리케이션에서 추가 작업이 크다
+    @GetMapping("/api/v6/orders")
+    public List<OrderQueryDTO> ordersV6() {
+        List<OrderFlatDTO> flats = orderQueryRepository.findAllByDTO_flat();
+
+        return flats.stream()
+                .collect(Collectors.groupingBy(o->new OrderQueryDTO(o.getOrderId(), o.getName(), o.getOrderDate(), o.getOrderStatus(), o.getAddress()),
+                        Collectors.mapping(o->new OrderItemQueryDTO(o.getOrderId(), o.getItemName(), o.getOrderPrice(), o.getCount()), Collectors.toList())))
+                .entrySet().stream()
+                .map(e->new OrderQueryDTO(e.getKey().getOrderId(), e.getKey().getName(), e.getKey().getOrderDate(), e.getKey().getOrderStatus(), e.getKey().getAddress(), e.getValue())).collect(Collectors.toList());
+    }
 
     @Data
     static class OrderDTO {
