@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="API 개발 고급 - 컬렉션 조회 최적화&#10;V1 ~ V3.1">
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="API 개발 고급 - JPA 에서 DTO 직접 조회&#10;V4 ~ V6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,6 +94,8 @@
       <workItem from="1669161269050" duration="19000" />
       <workItem from="1669168869948" duration="83000" />
       <workItem from="1669250372366" duration="12000" />
+      <workItem from="1669257746359" duration="92000" />
+      <workItem from="1669593646602" duration="7000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -270,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669168907021</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="API 개발 고급 - JPA 에서 DTO 직접 조회&#10;V4 ~ V6">
+      <created>1669257812610</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1669257812610</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,7 +297,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="JPA 시작하기" />
     <MESSAGE value="영속성 컨텍스트" />
     <MESSAGE value="엔티티 매핑" />
     <MESSAGE value="엔티티 매핑 실전활용" />
@@ -313,7 +321,8 @@
     <MESSAGE value="DB에 기본 초기 데이터 넣기" />
     <MESSAGE value="간단한 주문 조회 API 개발" />
     <MESSAGE value="API 개발 고급 - 컬렉션 조회 최적화&#10;V1 ~ V3.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="API 개발 고급 - 컬렉션 조회 최적화&#10;V1 ~ V3.1" />
+    <MESSAGE value="API 개발 고급 - JPA 에서 DTO 직접 조회&#10;V4 ~ V6" />
+    <option name="LAST_COMMIT_MESSAGE" value="API 개발 고급 - JPA 에서 DTO 직접 조회&#10;V4 ~ V6" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

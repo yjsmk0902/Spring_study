@@ -49,6 +49,21 @@ public class OrderApiController {
     //      2. 엔티티 조회 방식으로 해결이 안되면 DTO 조회 방식 사용 (유연한 성능 최적화가 힘듦)
     //      3. DTO 조회 방식으로 해결이 안되면 NativeSQL or 스프링 JdbcTemplate
 
+    //OSIV 와 성능 최적화
+    //  Open Session In View
+    //  spring.jpa.open-in-view: true 기본값
+    //  OSIV 전략은 트랜잭션 시작처럼 최초 DB connection 시작 시점부터 API 응답이 끝날 때까지 영속성 컨텍스트와 DB connection 을 유지한다.
+    //      -> 그래서 지금까지 View Template 이나 API 컨트롤러에서 지연 로딩 가능
+    //  지연 로딩은 영속성 컨텍스트가 살아있어야 가능하고, 영속성 컨텍스트는 기본적으로 DB connection 을 유지한다.
+    //  하지만 긴 시간동안의 DB connection 리소스 사용은 실시간 트래픽이 중요한 애플리케이션에서는 커넥션이 모자랄 수 있다.
+    //  OSIV 를 끄면 트랜잭션을 종료할 때 영속성 컨텍스트를 닫고, DB connection 도 반환한다. 따라서 낭비가 없다.
+    //  OSIV 를 끄면 모든 지연 로딩을 트랜잭션 안에서 처리해야 한다. -> 지연 로딩 코드를 트랜잭션 안으로 넣어야 함
+    //  그리고 View Template 에서 지연 로딩이 동작하지 않는다. -> 트랜잭션이 끝나기 전에 지연 로딩을 강제 호출
+
+    //커맨드와 쿼리 분리
+    //  예를 들어, OrderService   -> OrderService: 핵심 비즈니스 로직
+    //                          -> OrderQueryService: 화면이나 API 에 맞춘 서비스 (주로 읽기 전용 트랜잭션 사용)
+
     //V1. 엔티티 직접 노출
     //  엔티티가 변하면 API 스펙이 변한다.
     //  트랜잭션 안에서 지연 로딩 필요
