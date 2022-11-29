@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="스프링 Data JPA 프로젝트 환경설정" />
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="스프링 Data JPA - 예제 도메인 모델과 동작확인" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,6 +101,7 @@
       <workItem from="1669685324614" duration="62000" />
       <workItem from="1669688303993" duration="31000" />
       <workItem from="1669688433843" duration="176000" />
+      <workItem from="1669689994863" duration="69000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -298,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669688529504</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="스프링 Data JPA - 예제 도메인 모델과 동작확인">
+      <created>1669690020087</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1669690020087</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,7 +324,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="엔티티 매핑 실전활용" />
     <MESSAGE value="연관관계 매핑 기초" />
     <MESSAGE value="연관관계 매핑 실전 예제" />
     <MESSAGE value="다양한 연관관계 매핑" />
@@ -341,7 +348,8 @@
     <MESSAGE value="API 개발 고급 - JPA 에서 DTO 직접 조회&#10;V4 ~ V6" />
     <MESSAGE value="OSIV와 성능 최적화" />
     <MESSAGE value="스프링 Data JPA 프로젝트 환경설정" />
-    <option name="LAST_COMMIT_MESSAGE" value="스프링 Data JPA 프로젝트 환경설정" />
+    <MESSAGE value="스프링 Data JPA - 예제 도메인 모델과 동작확인" />
+    <option name="LAST_COMMIT_MESSAGE" value="스프링 Data JPA - 예제 도메인 모델과 동작확인" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
