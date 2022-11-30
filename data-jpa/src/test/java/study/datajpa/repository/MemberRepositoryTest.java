@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.dto.MemberDTO;
@@ -157,5 +160,31 @@ class MemberRepositoryTest {
         List<Member> findListMember = memberRepository.findListByUsername("member1");
         Member findMember = memberRepository.findMemberByUsername("member1");
         Optional<Member> findOptionalMember = memberRepository.findOptionalByUsername("member1");
+    }
+
+    @Test
+    public void paging() {
+        memberRepository.save(new Member("member1", 10));
+        memberRepository.save(new Member("member2", 10));
+        memberRepository.save(new Member("member3", 10));
+        memberRepository.save(new Member("member4", 10));
+        memberRepository.save(new Member("member5", 10));
+
+        int age = 10;
+        PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "username"));
+
+        Page<Member> page = memberRepository.findByAge(age, pageRequest);
+        //실무 꿀팁: 엔티티 반환 절대X -> Page<Member> => Page<MemberDTO> 로 변환하기
+        Page<MemberDTO> memberDTOPage = page.map(member -> new MemberDTO(member.getId(), member.getUsername(), null));
+
+        List<Member> content = page.getContent();               //조회된 데이터
+        long totalElements = page.getTotalElements();           //전체 데이터 수
+
+        assertThat(content.size()).isEqualTo(3);        //조회된 데이터 수
+        assertThat(totalElements).isEqualTo(5);
+        assertThat(page.getNumber()).isEqualTo(0);      //페이지 번호
+        assertThat(page.getTotalPages()).isEqualTo(2);  //전체 페이지 번호
+        assertThat(page.isFirst()).isTrue();                    //첫번째 항목인가?
+        assertThat(page.hasNext()).isTrue();                    //다음 페이지가 있는가?
     }
 }

@@ -1,5 +1,7 @@
 package study.datajpa.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -68,4 +70,15 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     //      컬렉션: 결과 없음 -> 빈 컬렉션 반환
     //      단건 조회: 결과 없음 -> null 반환 / 결과가 2건 이상 -> NonUniqueResultException 예외 발생
 
+    @Query(value = "select m from Member m left join m.team t",
+            countQuery = "select count(m) from Member m")       //카운트 쿼리 분리하기
+    Page<Member> findByAge(int age, Pageable pageable);
+    //스프링 데이터 JPA 페이징과 정렬
+    //  Pageable 인터페이스를 활용해서 사용
+    //  PageRequest 생성자의 첫 번째 파라미터에는 현재 페이지를, 두 번째 파라미터에는 조회할 데이터 수를 입력한다.
+    //  주의: Page 는 1부터 시작이 아니라 0부터 시작이다.
+    //  Page (count O)
+    //  Slice (count X) 추가로 limit + 1을 조회한다. 그래서 다음 페이지 여부 확인(최근 모바일 리스트처럼)
+    //  List (count X)
+    //  카운트 쿼리 분리 (이건 복잡한 sql 에서 사용, 데이터는 left join, 카운트는 left join 안해도 됨) 실무에서 중요!!!
 }
