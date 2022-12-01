@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="스프링 Data JPA - 쿼리 메소드 기능1">
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="스프링 Data JPA - 쿼리 메소드 기능2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,6 +108,8 @@
       <workItem from="1669772413472" duration="12000" />
       <workItem from="1669785513542" duration="34000" />
       <workItem from="1669875498142" duration="23000" />
+      <workItem from="1669878499701" duration="48000" />
+      <workItem from="1670198827131" duration="39000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -326,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669785535712</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="스프링 Data JPA - 쿼리 메소드 기능2">
+      <created>1669878535525</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1669878535525</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +353,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="다양한 연관관계 매핑" />
     <MESSAGE value="다양한 연관관계 매핑 - 실전예제" />
     <MESSAGE value="고급 매핑 - 상속관계 / @MappedSuperclass" />
     <MESSAGE value="고급 매핑 - 실" />
@@ -369,7 +377,8 @@
     <MESSAGE value="스프링 Data JPA - 예제 도메인 모델과 동작확인" />
     <MESSAGE value="스프링 Data JPA - 공통 인터페이스 기능" />
     <MESSAGE value="스프링 Data JPA - 쿼리 메소드 기능1" />
-    <option name="LAST_COMMIT_MESSAGE" value="스프링 Data JPA - 쿼리 메소드 기능1" />
+    <MESSAGE value="스프링 Data JPA - 쿼리 메소드 기능2" />
+    <option name="LAST_COMMIT_MESSAGE" value="스프링 Data JPA - 쿼리 메소드 기능2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
