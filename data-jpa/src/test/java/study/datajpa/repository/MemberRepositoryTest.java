@@ -243,4 +243,9 @@ class MemberRepositoryTest {
         Member findMember = memberRepository.findById(member1.getId()).get();
         //findMember.setUsername("member2");
     }
+
+    @Test
+    public void callCustom() {
+        List<Member> result = memberRepository.findMemberCustom();
+    }
 }
