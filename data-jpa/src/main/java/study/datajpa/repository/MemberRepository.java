@@ -130,4 +130,24 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     List<Member> findLockByUsername(String username);
     //  JPA 가 제공하는 락은 JPA 책 16.1 트랜잭션과 락 절을 참고
+
+    List<UsernameOnly> findProjectionByUsername(String username);
+    //Projections
+    //  엔티티 대신에 DTO 를 편리하게 조회할 때 사용
+    //  전체 엔티티가 아니라 만약 회원 이름만 딱 조회하고 싶으면? 이걸 쓰면됨
+    //  메서드 이름은 자유, 반환 타입으로 인지
+
+    <T> List<T> findProjectionsGenericByUsername(String username, Class<T> type);
+    //동적 Projections
+    //  다음과 같이 Generic type 을 주면, 동적으로 프로젝션 데이터 변경 가능
+
+    @Query(value = "select * from member where username = ?", nativeQuery = true)
+    Member findByNativeQuery(String username);
+    //네이티브 쿼리
+
+    @Query(value = "select m.member_id as id, m.username, t.name as teamName " +
+            "from member m left join team t"
+            , countQuery = "select count(*) from member"
+            , nativeQuery = true)
+    Page<MemberProjection> findByNativeProjection(Pageable pageable);
 }
