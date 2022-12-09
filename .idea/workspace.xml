@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="스프링 Data JPA - 나머지 기능들">
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="QueryDSL - 프로젝트 환경설정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +16,7 @@
         <option name="title" value="All" />
       </GitPushTagMode>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/exception" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
@@ -35,7 +35,8 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/luke/Desktop/Spring/Spring study&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
@@ -117,6 +118,8 @@
       <workItem from="1670374925122" duration="55000" />
       <workItem from="1670378720475" duration="49000" />
       <workItem from="1670560137040" duration="16000" />
+      <workItem from="1670563855456" duration="89000" />
+      <workItem from="1670810488088" duration="18000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -370,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670378750423</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="QueryDSL - 프로젝트 환경설정">
+      <created>1670563929955</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1670563929955</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,7 +398,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="프록시와 연관관계 관리 - 즉시로딩과 지연로딩" />
     <MESSAGE value="영속성 전이와 고아 객체" />
     <MESSAGE value="프록시와 연관관계 관리 - 실전 예제" />
     <MESSAGE value="프록시와 연관관계 관리 - 실전예제" />
@@ -413,7 +422,8 @@
     <MESSAGE value="스프링 Data JPA - 확장 기능" />
     <MESSAGE value="스프링 Data JPA - 분석 및 새로운 엔티티 구별 방법" />
     <MESSAGE value="스프링 Data JPA - 나머지 기능들" />
-    <option name="LAST_COMMIT_MESSAGE" value="스프링 Data JPA - 나머지 기능들" />
+    <MESSAGE value="QueryDSL - 프로젝트 환경설정" />
+    <option name="LAST_COMMIT_MESSAGE" value="QueryDSL - 프로젝트 환경설정" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
