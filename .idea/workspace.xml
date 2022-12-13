@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="QueryDSL - 기본 문법 1">
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="QueryDSL - 기본 문법 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,6 +122,8 @@
       <workItem from="1670810488088" duration="18000" />
       <workItem from="1670821036114" duration="55000" />
       <workItem from="1670893560546" duration="66000" />
+      <workItem from="1670908656275" duration="58000" />
+      <workItem from="1671065119061" duration="18000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -389,7 +391,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670821081336</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="QueryDSL - 기본 문법 2">
+      <created>1670908706266</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1670908706266</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,7 +416,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="프록시와 연관관계 관리 - 실전 예제" />
     <MESSAGE value="프록시와 연관관계 관리 - 실전예제" />
     <MESSAGE value="값 타입" />
     <MESSAGE value="값 타입 - 실전 예제" />
@@ -432,7 +440,8 @@
     <MESSAGE value="스프링 Data JPA - 나머지 기능들" />
     <MESSAGE value="QueryDSL - 프로젝트 환경설정" />
     <MESSAGE value="QueryDSL - 기본 문법 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="QueryDSL - 기본 문법 1" />
+    <MESSAGE value="QueryDSL - 기본 문법 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="QueryDSL - 기본 문법 2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
