@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import study.querydsl.dto.MemberDTO;
+import study.querydsl.dto.MemberSearchCondition;
 import study.querydsl.dto.QMemberDTO;
 import study.querydsl.dto.UserDTO;
 import study.querydsl.entity.Member;
@@ -780,7 +781,6 @@ public class QuerydslBasicTest {
                 .from(member)
                 .where(member.username.eq(member.username.lower()))
                 .fetch();
-
-
     }
+
 }
