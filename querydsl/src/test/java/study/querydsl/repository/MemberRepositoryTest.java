@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import study.querydsl.dto.MemberSearchCondition;
 import study.querydsl.dto.MemberTeamDTO;
 import study.querydsl.entity.Member;
+import study.querydsl.entity.QMember;
 import study.querydsl.entity.Team;
 
 import javax.persistence.EntityManager;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static study.querydsl.entity.QMember.*;
 
 @SpringBootTest
 @Transactional
@@ -95,4 +97,27 @@ class MemberRepositoryTest {
 
         assertThat(result).extracting("username").containsExactly("member4");
     }
+
+    //스프링 데이터 JPA 가 제공하는 Querydsl 기능 -> 단순한 경우는 사용할지도?
+    //  인터페이스 지원 - QuerydslPredicateExecutor
+    //      한계점
+    //          조인 X (묵시적 조인은 가능하지만 left join 이 불가능)
+    //          클라이언트가 Querydsl 에 의존해야 한다. 서비스 클래스가 Querydsl 이라는 구현 기술에 의존해야 한다.
+    //          복잡한 실무환경에서 사용하기에는 한계가 명확하다.
+    //          QuerydslPredicateExecutor 는 Pageable, Sort 를 모두 지원하고 정상 동작한다.
+    @Test
+    public void querydslPredicateExecutorTest() {
+        Iterable<Member> result = memberRepository.findAll(member.age.between(10, 40)
+                .and(member.username.eq("member1")));
+
+        for (Member findMember : result) {
+            System.out.println("findMember = " + findMember);
+        }
+    }
+
+    //  Querydsl Web 지원 -> 안쓰는 것을 권장
+    //      한계점
+    //          단순한 조건만 가능
+    //          컨트롤러가 Querydsl 에 의존
+    //          복잡한 실무환경에서 사용하기에는 한계가 명확
 }

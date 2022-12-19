@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="QueryDSL - 실무 활용 - 순수 JPA와 QueryDSL">
+    <list default="true" id="b62b53e6-50eb-4b34-9689-ba8aefa1e581" name="변경" comment="QueryDSL - 실무 활용 - 스프링 데이터 JPA와 Querydsl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,6 +128,8 @@
       <workItem from="1671149667959" duration="15000" />
       <workItem from="1671160177859" duration="49000" />
       <workItem from="1671418301412" duration="20000" />
+      <workItem from="1671423600771" duration="73000" />
+      <workItem from="1671580716080" duration="29000" />
     </task>
     <task id="LOCAL-00001" summary="스프링 트랜잭션 전파">
       <created>1666053484507</created>
@@ -416,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671160219498</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="QueryDSL - 실무 활용 - 스프링 데이터 JPA와 Querydsl">
+      <created>1671423663249</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1671423663249</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -434,7 +443,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="값 타입 - 실전 예제" />
     <MESSAGE value="객체지향 쿼리 언어1 - 기본문법&#10;기본 문법과 쿼리 API&#10;프로젝션(SELECT)&#10;페이징 API&#10;내부, 외부, 세타 조인 &amp; ON절을 이용한 조인" />
     <MESSAGE value="객체지향 쿼리 언어2 - 중급 문법" />
     <MESSAGE value="변경 감지 &amp; merge" />
@@ -459,7 +467,8 @@
     <MESSAGE value="QueryDSL - 기본 문법 2" />
     <MESSAGE value="QueryDSL - 중급 문법" />
     <MESSAGE value="QueryDSL - 실무 활용 - 순수 JPA와 QueryDSL" />
-    <option name="LAST_COMMIT_MESSAGE" value="QueryDSL - 실무 활용 - 순수 JPA와 QueryDSL" />
+    <MESSAGE value="QueryDSL - 실무 활용 - 스프링 데이터 JPA와 Querydsl" />
+    <option name="LAST_COMMIT_MESSAGE" value="QueryDSL - 실무 활용 - 스프링 데이터 JPA와 Querydsl" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
